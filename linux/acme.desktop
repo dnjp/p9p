@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=acme
+Comment=acme desktop shortcut
+Exec=/home/daniel/bin/rc/9acme
+StartupWMClass=acme
+Terminal=false
+Type=Application
+Categories=Qt;Graphics;3DGraphics;
+Icon=/home/daniel/src/config/programs/plan9/dist/spaceglenda100.png

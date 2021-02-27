@@ -1,0 +1,23 @@
+#!/usr/local/plan9/bin/rc
+
+ignore='tags|TAGS|node_modules|.git'
+pattern=$*
+
+# rg --vimgrep --iglob $ignore $pattern
+rg --vimgrep -e $pattern | rg -v $ignore 
+
+# | awk '/:/ {c++}; (c==2){$1="           "}1'
+
+# awk '/:/{c++;if(c==2){sub(":","             ")}}1'
+
+
+
+# for(file in `{ du -a ./ | awk '{print $2}' | sed 's/\.\/\//.\//g' | grep -v $ignore}){
+# 	switch(`{ file $file | tr '[:upper:]' '[:lower:]'}){
+# 	case *ascii*
+# 		grep -n $pattern $file | awk '{print "'^$file:^'"$0}'
+# 	case *program*
+# 		grep -n $pattern $file | awk '{print "'^$file:^'"$0}'
+# 	}
+# }
+ 

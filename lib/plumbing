@@ -1,0 +1,9 @@
+include basic
+
+type is text
+data matches '(git|github)(.*)'
+plumb to web
+plumb start web $0
+
+
+

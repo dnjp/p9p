@@ -1,0 +1,19 @@
+#!/usr/local/plan9/bin/rc
+
+. $HOME/lib/profile
+
+tabstop=8
+INSIDE_ACME=true
+PAGER=nobs
+MANPAGER=nobs
+acmeshell=$PLAN9/bin/rc
+
+9 plumber
+
+fontsrv &
+font=/mnt/font/LucidaSans/10a/font
+lfont=/mnt/font/LucidaConsole/10a/font
+
+# exec edwood -a -f $font -F $lfont 
+exec acme -a -f $lfont -F $lfont 
+

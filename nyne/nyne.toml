@@ -1,0 +1,204 @@
+###########################
+#
+#  Tag Configuration options
+#
+###########################
+[tag]
+	menu = [
+	  "|fmt",
+	  "|com",
+	  "|a-",
+	  "|a+",
+	  "Ldef",
+	  "Lrefs",
+	  "Lcomp",
+	  "win"
+	]
+
+###########################
+#
+#  Buffer Formatting Options
+#
+###########################
+[format]
+	# This will automatically format Go buffers with hard tabs and 8
+	# character width indentation
+	[format.go]
+	extensions = [".go"]
+	indent = 8
+	tabexpand = false
+	commentstyle = "// "
+
+		# run gofmt on save
+		[[format.go.commands]]
+		exec = "gofmt"
+		args = [ "$NAME" ]
+
+		# if the command you want to run does not print to stdout,
+		# set this to false
+		printsToStdout = true
+
+	[format.c]
+	extensions = [".c", ".h"]
+	indent = 8
+	tabexpand = false
+	commentstyle = "/* */"
+
+		[[format.c.commands]]
+		exec = "indent"
+		# rougly similar to BSD style
+		args = [
+			#
+			# comments
+			#
+			# "-nfca", # Disable all formatting of comments
+			"-ncdb", # Do not put comment delimiters on blank lines
+			# "-fc1", # Format comments in the first	column
+			"-cp33", # Put comments	to the right of	#else and #endif statements in	column
+			"-c33", # Put comments	to the right of	code in	column n
+			"-cd33", # Put comments to the right of the declarations in column n
+			# "-cdb", # Put comment delimiters on blank lines
+			"-sc", # Put the `*' character at the	left of	comments
+			#
+			# space after keyword
+			#
+			"-nsaf", # Do not put a	space after every for
+			"-nsai", # Do not put a space after each if
+			"-nsaw", # Do not put a space after each while
+			"-npcs", # Do not put space after the function in function calls
+			"-nprs", # Do not put a	space after every '(' and before every ')'
+			"-psl", # Put the type	of a procedure on the line before its name
+			#
+			# braces
+			#
+			"-br", # Put braces on line with if, etc
+			"-bls", # Put braces on the line after	struct declaration lines
+			"-ce", # Cuddle else and preceeding `}'
+			#
+			# blank lines
+			#
+			"-nsob", # Do not swallow optional blank lines
+			"-nss", # Do not force	a space	before the semicolon after certain statements
+			"-nbad", # Do not force	blank lines after declarations
+			"-nbap", # Do not force	blank lines after procedure bodies
+			"-bbo", # Prefer to break long	lines before boolean operators
+			"-bc", # Force newline after comma in	declaration
+			"-hnl", # Prefer  to  break long lines	at the position	of newlines in the input
+			#
+			# indentation
+			#
+			"-ts8", # Set tab size	to n spaces
+			"-ci4", # Continuation	indent of n spaces.
+			"-cli0", # Case	label indent of	n spaces
+			"-cbi0", # Indent braces after a case label N spaces
+			"-sbi0", # Indent braces of a struct, union or enum N spaces
+			"-bli0", # Indent braces n spaces
+			"-di16", # Put variables in column n
+			"-i8", # Set indentation level to n spaces
+			"-ip8", # Indent parameter types in old-style function	definitions by n  spaces
+			"-l75", # Set maximum line length for non-comment lines to n
+			"-lp", # Line up continued lines at parentheses
+			#
+			# output
+			#
+			"-st", # Write to standard output
+			"$NAME"
+		]
+		printsToStdout = true
+
+		[[format.c.commands]]
+		exec = "sed"
+		args = [
+			"s/) {/){/g",
+			"$NAME",
+		]
+		printsToStdout = true
+
+
+	[format.cpp]
+	extensions = [".cc", ".cpp", ".hpp", ".cxx", ".hxx"]
+	indent = 2
+	tabexpand = true
+	commentstyle = "// "
+
+	[format.js]
+	extensions = [".js", ".ts"]
+	indent = 2
+	tabexpand = true
+	commentstyle = "// "
+
+		[[format.js.commands]]
+		exec = "prettier"
+		args = [ "$NAME", "--write", "--loglevel", "error" ]
+		printsToStdout = false
+
+	[format.make]
+	extensions = ["Makefile"]
+	indent = 8
+	tabexpand = false
+	commentstyle = "# "
+
+	[format.shell]
+	extensions = [".rc", ".sh"]
+	indent = 8
+	tabexpand = false
+	commentstyle = "# "
+
+	[format.tf]
+	extensions = [".tf"]
+	indent = 2
+	tabexpand = true
+	commentstyle = "# "
+
+		[[format.tf.commands]]
+		exec = "terraform"
+		args = [ "fmt", "$NAME"]
+		printsToStdout = false
+
+	[format.html]
+	extensions = [".html"]
+	indent = 2
+	tabexpand = true
+	commentstyle = "<!-- -->"
+
+	[format.java]
+	extensions = [".java"]
+	indent = 2
+	tabexpand = true
+	commentstyle = "// "
+
+		[[format.java.commands]]
+		exec = "google-java-format"
+		args = [ "$NAME" ]
+		printsToStdout = true
+
+	[format.yaml]
+	extensions = [".yml", ".yaml"]
+	indent = 2
+	tabexpand = true
+	commentstyle = "# "
+
+	[format.json]
+	extensions = [".json"]
+	indent = 2
+	tabexpand = true
+
+	[format.markdown]
+	extensions = [".md"]
+	indent = 2
+	tabexpand = true
+
+		[[format.markdown.commands]]
+		exec = "prettier"
+		args = [
+			"--print-width", "80",
+			"--prose-wrap", "always",
+			"--write", "$NAME",
+		]
+		printsToStdout = false
+
+	[format.toml]
+	extensions = [".toml"]
+	indent = 8
+	tabexpand = false
+	commentstyle = "# "

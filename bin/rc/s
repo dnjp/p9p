@@ -1,0 +1,13 @@
+#!/bin/env rc
+
+. $home/lib/profile
+path=($PLAN9/bin $path)
+SHELL=$PLAN9/bin/rc
+INSIDE_ACME=true
+
+# font=$PLAN9/font/lucsans/unicode.7.font 
+font=/mnt/font/GoMono/10a/font
+
+sam -a $*
+
+

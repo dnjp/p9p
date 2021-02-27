@@ -1,0 +1,53 @@
+# FormatOnPut = true
+# CodeActionsOnPut = ["source.organizeImports"]
+
+WorkspaceDirectories = [
+	"/home/daniel/src/work/martin-bidder/jvm/",
+	"/home/daniel/src/work/martin-bidder/go/",
+	"/home/daniel/src/work/martin-bidder/pkg/src/backend/",
+	"/home/daniel/src/work/martin-bidder/pkg/src/ad-server/",
+	"/home/daniel/src/personal/nyne",
+	"/home/daniel/src/personal/nxe",
+	"/home/daniel/src/work/martin-bidder/pkg/src/notif-server/",
+]
+
+[Servers]
+	[Servers.gopls]
+	Command = ["gopls", "serve", "-rpc.trace"]
+	StderrFile = "gopls.stderr.log"
+	LogFile = "gopls.log"
+
+		# These settings gets passed to gopls
+		[Servers.gopls.Options]
+		hoverKind = "FullDocumentation"
+
+	[Servers.ccls]
+	Command = ["ccls"]
+	StderrFile = "ccls.stderr.log"
+	LogFile = "ccls.log"
+
+	[Servers.typescript]
+	Command = ["typescript-language-server", "--stdio"]
+	StderrFile = "ts.stderr.log"
+	LogFile = "ts.log"
+
+	[Servers.jdtls]
+	Command = ["/bin/jdtls"]
+	StderrFile = "java.stderr.log"
+	LogFile = "java.log"
+
+[[FilenameHandlers]]
+Pattern = '([/\\]go\.mod)|([/\\]go\.sum)|(\.go)$'
+ServerKey = "gopls"
+
+[[FilenameHandlers]]
+Pattern = '(\.hpp)|(\.cc)|(\.cpp)|(\.h)$'
+ServerKey = "ccls"
+
+[[FilenameHandlers]]
+Pattern = '(\.js)|(\.js)|(\.jsx)$'
+ServerKey = "typescript"
+
+[[FilenameHandlers]]
+Pattern = '(\.java)$'
+ServerKey = "jdtls"

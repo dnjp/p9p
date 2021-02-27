@@ -1,0 +1,152 @@
+prompt=('; ' '  ')
+
+font=/mnt/font/LucidaSans/10a/font
+
+NO_COLOR=1
+
+BROWSER='brave'
+# EDITOR='E'
+EDITOR='vi'
+VISUAL=$EDITOR
+PAGER=nobs
+MANPAGER=nobs
+
+. $home/Nextcloud/secrets/secrets.rc
+
+NEXTCLOUD=$home/Nextcloud/
+MARTIN=$home/src/work/martin-bidder
+PLAN9=/usr/local/plan9
+. $PLAN9/lib/acme.rc
+
+GOROOT=/usr/local/go
+GOPATH=$home/go
+LC_ALL=en_US.utf8
+
+SKIM_DEFAULT_OPTIONS='--color=bw'
+FZF_DEFAULT_OPTS=--no-color
+
+NVM_VERSION=$home/src/config/programs/nvm/versions/node/v12.18.4
+
+JAVA_home=/usr/lib/jvm/java-14-openjdk
+_JAVA_AWT_WM_NONREPARENTING=1 
+
+HARVEY=$home/src/personal/harvey
+
+VCPKG_ROOT=$home/vcpkg
+OpenCV_DIR=$home/vcpkg/packages/opencv4_x64-linux/share/opencv
+DCMAKE_TOOLCHAIN_FILE=$home/vcpkg/scripts/buildsystems/vcpkg.cmake
+VCPKG_TARGET_TRIPLET=$home/vcpkg/installed/x64-linux
+CMAKE_TOOLCHAIN_FILE=$home/vcpkg/scripts/buildsystems/vcpkg.cmake
+SKIM=$home/.skim
+SNAP=/snap/
+
+path=(/bin $PLAN9/bin /usr/bin /usr/local/bin $home/bin/rc $home/bin/amd64 $home/google-cloud-sdk/bin/ /usr/local/bin/ /usr/local/go/bin $home/go/bin/ $home/.local/bin $MARTIN/bin $VCPKG_ROOT $home/nand2tetris/tools/ $home/.cargo/bin $home/urbit $home/.gem/ruby/2.5.0/bin $home/.deno/bin/ $home/.yarn/bin $home/src/programs/nvm/versions/node/v14.4.0/bin $home/.linkerd2/bin $home/.krew/bin $NVM_VERSION/bin $home/appimage $HARVEY/linux_amd64/bin $SNAP/bin $SKIM/bin)
+
+fn h{ cd $home }
+fn mar{ cd $MARTIN }
+fn per{ cd $home/src/personal }
+fn next{ cd $NEXTCLOUD }
+fn cfg{ cd $home/src/cfg }
+fn dow{ cd $home/Downloads }
+fn drop{ cd $home/Dropbox }
+fn cl{ clear }
+fn cd{ builtin cd $* && awd }
+fn l{ 9 ls $* | mc }
+fn la{ ls -a $* | mc }
+fn '..'{ cd .. }
+fn n{ noice $* }
+
+fn code{ code-insiders $* }
+fn e{ editinacme $* }
+
+fn g{ git $* }
+fn gs{ git status }
+fn gc{ git commit -am $* }
+fn gp{ git push }
+fn ga{ git add }
+
+fn t{ tmux -2 -u $* }
+fn tat{ tmux attach -t $* }
+fn ts{ tmux ls $* }
+fn tk{ tmux kill-session -t $* }
+
+fn pdf{ evince }
+
+fn runlisp{ sbcl --script }
+
+fn pf{ ipfs }
+fn pfreadme{ ipfs cat /ipfs/QmS4ustL54uo8FzR9455qaxZwuMiUhyvMcX9Ba8nUH4uVv/readme }
+pfbase=QmS4ustL54uo8FzR9455qaxZwuMiUhyvMcX9Ba8nUH4uVv
+
+fn tf{ terraform $* -no-color }
+fn tp{ terraform plan }
+fn ta{ terraform apply }
+
+fn k{ kubectl $* }
+fn kpo{ kubectl get po $* }
+fn wkpow{ watch kubectl get po -o wide }
+fn ksv{ kubectl get svc $* }
+fn kdp{ kubectl get deploy $* }
+fn kin{ kubectl get ingress $* }
+fn kdb{ kubectl -n db }
+fn kmon{ kubectl -n monitoring }
+
+fn dev-con{ gcloud beta container clusters get-credentials martin-bidder-dev-east --region us-east4 --project martin-bidder-dev }
+fn stage-con{ gcloud beta container clusters get-credentials martin-bidder-stage-east --region us-east4 --project martin-bidder-stage }
+fn stage-west-con{ gcloud beta container clusters get-credentials martin-bidder-stage-west --region us-west1 --project martin-bidder-stage }
+fn prod-con{ gcloud beta container clusters get-credentials martin-bidder-prod-east --region us-east4 --project martin-bidder-prod }
+fn prod-west-con{ gcloud beta container clusters get-credentials martin-bidder-prod-west --region us-west1 --project martin-bidder-prod }
+fn test-con{ gcloud container clusters get-credentials martin-bidder-stage-test --region us-east4 --project martin-bidder-stage }
+
+fn proj{
+	gcloud config configurations activate $1
+	gcloud info | grep Project
+}
+
+fn goose-run{
+	goose postgres postgres://$DB_USER:$DB_PASSWORD@$DB_HOST/$DB_NAME $*
+}
+
+fn kubepods{
+	pat=$1
+	cmd=$2
+	pods=`{kubectl get po | rg $pat | awk '{print $1}'}
+	for(i in $pods) eval $cmd
+}
+
+fn scaledeploy{
+	for(i in `{kubectl get deploy | 9 grep $1 | 9 awk '{print $1}'}){
+		kubectl scale deploy $i --replicas=$2
+	}
+}
+
+fn restartdeploy{
+	for(i in `{kubectl get deploy | 9 grep $1 | 9 awk '{print $1}'}){
+		kubectl rollout restart deploy $i
+	}
+}
+
+fn pwd{
+	if(~ $#dir 0)
+		dir=‘{/bin/pwd}
+	echo $dir
+}
+
+fn awk{ 9 awk $* }
+fn bunzip2{ 9 bunzip2 $* }
+fn bzip2{ 9 bzip2 $* }
+fn cat{ 9 cat $* }
+fn dd{ 9 dd $* }
+fn echo{ 9 echo $* }
+fn ed{ 9 ed $* }
+fn fmt{ 9 fmt $* }
+fn lc{ 9 lc $* }
+fn ls{ 9 ls $* }
+fn mk{ 9 mk $* }
+fn mkdir{ 9 mkdir $* }
+fn nroff{ 9 nroff $* }
+fn ps{ 9 ps $* }
+fn rm{ 9 rm $* }
+fn sed{ 9 sed $* }
+fn zip{ 9 zip $* }
+

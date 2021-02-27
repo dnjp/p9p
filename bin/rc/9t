@@ -1,0 +1,12 @@
+#!/usr/local/plan9/bin/rc
+
+. $home/lib/profile
+path=($PLAN9/bin $path)
+
+SHELL=$PLAN9/bin/rc
+INSIDE_ACME=true
+TERM=dump
+
+font=/mnt/font/LucidaConsole/10a/font
+
+exec 9term -s

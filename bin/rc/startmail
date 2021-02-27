@@ -1,0 +1,7 @@
+#!/usr/local/plan9/bin/rc
+
+plumber
+factotum
+factotum -g 'proto=pass service=imap server=imap.gmail.com user=daniel@martin.ai !password?'
+mailfs -t imap.gmail.com
+

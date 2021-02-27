@@ -1,0 +1,6 @@
+#!/usr/local/plan9/bin/rc
+
+contents=`{xclip -o -sel clip}
+newcontents=`{echo $contents | sed 's/\"/''/g'}
+echo $newcontents
+eval $newcontents

@@ -1,0 +1,18 @@
+#!/usr/local/bin/rc
+
+. $home/lib/profile
+
+9 plumber
+
+tabstop=2
+tabexpand=true
+INSIDE_ACME=true
+# cat $home/9/plumbing | 9p write plumb/rules
+
+fontsrv &
+
+# font=/lib/font/bit/lucm/euro.9.font        # Uses fonts in $PLAN9/font
+lfont=/mnt/font/LucidaSans/13a/font
+font=/mnt/font/LucidaSans-Typewriter/12a/font
+
+exec acme -a -f $lfont -F $font &

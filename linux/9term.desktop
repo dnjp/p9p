@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=9term
+Comment=9term desktop shortcut
+Exec=/home/daniel/bin/9t
+StartupWMClass=9term
+Terminal=false
+Type=Application
+Categories=Qt;Graphics;3DGraphics;
+Icon=/home/daniel/src/config/programs/plan9/dist/glendacircle.png

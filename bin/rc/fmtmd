@@ -1,0 +1,4 @@
+#!/usr/local/plan9/bin/rc
+
+prettier --prose-wrap always --print-width 80 $1
+

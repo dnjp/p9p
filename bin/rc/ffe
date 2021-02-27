@@ -1,0 +1,18 @@
+#!/usr/local/plan9/bin/rc
+
+curfile=$1
+glob=$2
+
+input=`{ echo $glob | awk '{print $1}' }
+echo 'INPUT: '^$input
+files=`{ echo $input | sed 's/:[0-9]*//g' | sed 's/^\.\///g' }
+echo 'FILES: '^$files
+num=`{ echo $input | sed 's/\:/ : /g' | awk '{print $3}' }
+echo 'NUM: '^$num
+
+switch($curfile){
+case *$files
+	echo ':'^$num
+case *
+	echo 'E +:'^$num^' '^$files
+}

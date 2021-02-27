@@ -1,0 +1,5 @@
+#!/usr/local/bin/rc
+
+. $home/lib/profile
+
+exec 9term -s -l -W600x800 -f /mnt/font/LucidaSans-Typewriter/12a/font  rc -l &

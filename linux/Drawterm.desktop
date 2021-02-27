@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Drawterm
+Comment=drawterm desktop shortcut
+Exec=/home/daniel/bin/9dt
+StartupWMClass=Drawterm
+Terminal=false
+Type=Application
+Categories=Qt;Graphics;3DGraphics;
+Icon=/home/daniel/src/cfg/sources/github.com/dnjp/plan9port/dist/spaceglenda100.png
+

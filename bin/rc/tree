@@ -1,0 +1,4 @@
+#!/usr/bin/env rc
+
+9 du -a $* | 9 awk '{print $2}' | 9 sort | 9 sed 's/[^\/]+\//	/g' 
+

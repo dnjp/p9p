@@ -1,0 +1,13 @@
+#!/usr/bin/env rc
+
+if(~ $1 -x){
+        shift
+        echo $*
+        exit 0
+}
+if(~ $1 -*){
+        echo 'cannot deal with options' >[1=2]
+        exit 1
+}
+
+msmtp -f daniel@martin.ai $*

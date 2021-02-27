@@ -1,0 +1,7 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Rio
+Comment=plan9port window manager
+Exec=/home/daniel/src/cfg/wm/rio/start.rc
+Icon=/home/daniel/src/cfg/sources/github.com/dnjp/plan9/dist/glendacircle.png
+Type=XSession

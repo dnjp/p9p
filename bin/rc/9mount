@@ -1,0 +1,14 @@
+#!/usr/local/plan9/bin/rc
+
+echo `{namespace}
+
+# mkdir -p /home/daniel/n/acme
+9pfuse /tmp/ns.daniel.:0/acme /home/daniel/n/acme
+
+# mkdir -p /home/daniel/n/fonts
+9pfuse /tmp/ns.daniel.:0/acme /home/daniel/n/fonts
+
+9fs sources
+# mkdir -p /home/daniel/n/sources
+9pfuse /tmp/ns.daniel.:0/sources /home/daniel/n/sources
+

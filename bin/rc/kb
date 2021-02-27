@@ -1,0 +1,21 @@
+#!/usr/local/plan9/bin/rc
+
+#############################################
+# colemak with CapsLock as Escape
+#############################################
+# setxkbmap us -variant colemak -option caps:escape
+
+#############################################
+# colemak with CapsLock as Escape/Control
+#############################################
+# setxkbmap us -variant colemak 
+setxkbmap us
+setxkbmap -option ctrl:nocaps
+setxkbmap -option 'caps:ctrl_modifier'
+xcape -e 'Control_L=Escape' -t 200
+
+#############################################
+# increase repeat rate
+#############################################
+xset r rate 200 100
+

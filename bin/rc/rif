@@ -1,0 +1,10 @@
+#!/usr/local/plan9/bin/rc
+
+pattern=$1
+replace=$2
+for(i in `{f $pattern | awk '{print $1}' | sed 's/:[0-9]*://g' | uniq}){
+	ed $i <<EOF
+}
+g/$pattern/s//$replace/g
+w
+EOF

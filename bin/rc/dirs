@@ -1,0 +1,9 @@
+#!/usr/local/plan9/bin/rc
+
+for(file in `{ du -a ./ | awk '{print $2}' | sed 's/\.\/\//.\//g' }){
+	isdir=`{ file $file | grep -v *.out | awk '{print $2}' | grep directory }
+	if(1 = $isdir){
+		echo $file
+	}
+}
+

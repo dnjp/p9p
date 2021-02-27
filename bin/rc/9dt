@@ -1,0 +1,7 @@
+#!/usr/local/plan9/bin/rc
+
+. $home/lib/profile
+path=($PLAN9/bin $path)
+
+drawterm -a 192.168.122.40 -h 192.168.122.40 -u glenda
+
